@@ -1,0 +1,104 @@
+body {background-color: #ffffff !important; margin:0px; padding:0px;}
+.LandingContainer, .Innerrow {width: 100%;	float: left;}
+.LandingInner {	width: 70%;	margin: 0px auto;}
+.header{background-color:#151a23;}
+.logo{width:40%;float:left; padding:15px 0px;}
+.TopMenu{width:40%;float:right; padding:43px 0px 0px 0px;  }
+.footer {background: #151a23 url(images/footer_bg.jpg) left top repeat-x;}
+.banner{ border-top:5px solid #ff942c;}
+.bannerimg{text-align:center;}
+h2.MainHeading{font-family:segoe UI; font-weight:500; font-size:25pt; padding:0px; margin:15px 0px 15px 0px;}
+div.content{font-family:segoe UI; padding:0px; margin:0px; width:70%; margin:0px auto; font-size:11pt;}
+.testimonials{background-color:#3c4047; color:#ffffff; padding:30px 0px 20px 0px; text-align:center; margin:20px 0px 10px 0px;}
+.testimonialsCont, .TestiAuthor{width:70%; text-align:center; margin:0px auto;font-family:segoe UI; font-style:italic; line-height:20px;}
+.content{padding:30px 0px 40px 0px;}
+.contentIcon{float:left;}
+.contentHeading{color:#4c4c4c; font-size:22pt; font-weight:normal; float:left; line-height:35px; vertical-align:bottom;}
+.contentDesc{text-align:justify;}
+.usablity, .scalablity{padding:30px 0px 0px 10px; float:left;}
+.refine{padding-left:10px;}
+.TestiAuthor{width:80%; text-align:right; padding:10px 0px 5px 0px;}
+.contentDesc{width:100%; float:left;}
+.contentCol{float:left;padding-right:10px;;font-family:segoe UI;font-size:11pt; width:29%; margin-right:22px;	 }
+.footer{background:#151a23 url(images/footer_bg.jpg) left top repeat-x;}
+.footer .Innerrow{color:#585a5e; text-align:center; padding:40px 0px 30px 0px;font-family:segoe UI; font-size:10pt; }
+#menu{
+	width:105px;
+	list-style:none;  /*--- Makes the bullets go away ---*/
+	margin:0;  /*--- Take out any default margin on the UL tag ---*/
+	padding:0;  /*--- Take out any default padding on the UL tag ---*/
+	float:right;
+}
+
+#menu li{
+	float:left;  /*--- Make the list go horizontal ---*/
+	margin:0;
+}
+
+#menu li a{
+	display:block;  /*--- Make the entire button are clickable rather than the text alone ---*/
+	text-indent: -9999px; /*--- Push the text off screen to hide text---*/
+	overflow: hidden; /*--- Makes text outside of bounding box hidden ---*/
+	height:33px;
+	
+	
+}
+
+/* 
+The following rules place the "normal" 
+state image as the background for our anchor tags
+*/
+
+#menu li#facebook a{
+	background: url(images/facebook_icon.jpg) no-repeat;
+	width:35px;
+}
+
+#menu li#twitter a{
+	background: url(images/twitter_icon.jpg) no-repeat;	
+	width:35px;
+	
+}
+
+#menu li#linkedin a{
+	background: url(images/linkedin_icon.jpg) no-repeat;	
+	width:35px;
+	
+}
+#menu li#facebook a:hover{
+	background: url(images/facebook_full.jpg) no-repeat;
+}
+#menu li#twitter a:hover{
+	background: url(images/twitter_full.jpg) no-repeat;	
+}
+#menu li#linkedin a:hover{
+	background: url(images/linkedin_full.jpg) no-repeat;	
+}
+.clear{
+	clear:both;  /*--- Clears the float of the list items to restore normal document flow ---*/
+}
+
+
+/* small desktop */
+@media all and (max-width: 1200px) {
+    .state-indicator {
+        z-index: 2;
+    }
+}
+
+/* tablet */
+@media all and (min-width: 1024px) and (max-width: 1150px) {
+.contentHeading{font-size:19pt;}
+.contentCol{width:30%; margin-right:10px;}
+}
+@media all and (max-width: 1024px) {
+	.contentHeading{font-size:18pt;}
+	div.content, .testimonialsCont, .LandingInner{width:90%;}
+	h2.MainHeading{font-size:20pt;}
+	.contentCol{width:30%; margin-right:10px;}
+}
+
+/* mobile phone */
+@media all and (max-width: 768px) {
+   .contentCol{width:100%; float:left; padding:10px 0px 10px 0px;}
+}

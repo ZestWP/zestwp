@@ -1,0 +1,113 @@
+div.jContent
+{
+	float: left;
+		
+}
+.demo1{width:98%;}
+.panel{width:100% !important; }
+div.slides
+{
+	
+	
+}
+.slideDiv{background-color:#ffffff;  width:95%;}
+
+div.jContent p
+{
+	padding: 0px 0px 0px 0px;	
+	margin: 0px 0px 0px 0px;
+}
+
+div.jContent a
+{
+	float: left;
+	display: block;	
+}
+
+div.jContent a.hide
+{
+	visibility: hidden;
+}
+
+
+div.jc-horizontal a
+{
+	width: 35px;
+	height: 34px;
+}
+
+.title{padding:0px 0px 8px 30px;}
+div.jc-horizontal a.prev
+{
+margin-top: 5px;
+position: absolute;
+z-index: 999;
+	background: url('images/arrows/leftArrow.jpg') no-repeat;
+}
+
+div.jc-horizontal a.prev:hover
+{
+	background: url('images/arrows/leftArrow.jpg') no-repeat;
+}
+
+div.jc-horizontal a.next
+{
+	margin-top: 5px;
+position: absolute;
+z-index: 999;
+left:250px;
+	background: url('images/arrows/rightArrow.jpg') no-repeat;
+}
+
+div.jc-horizontal a.next:hover
+{
+	background: url('images/arrows/rightArrow.jpg') no-repeat;
+}
+
+/* vertical */
+div.jc-vertical
+{
+	margin: 10px 10px 20px 55px; 
+}
+
+
+div.jc-vertical a
+{
+	width: 655px; 
+	height: 34px;
+}
+
+div.jc-vertical a.prev
+{
+	margin: 0px 0px 5px 0px;
+	background: url('images/arrows/wup.png') no-repeat top center;
+}
+
+div.jc-vertical a.prev:hover
+{
+	background: url('images/arrows/bup.png') no-repeat top center;
+}
+
+div.jc-vertical a.next
+{
+	margin: 5px 0px 0px 0px;
+	background: url('images/arrows/wdown.png') no-repeat top center;
+}
+
+div.jc-vertical a.bottom-arr:hover
+{
+	background: url('images/arrows/bdown.png') no-repeat top center;
+}
+
+/* auto and circle */
+div.jc-auto
+{
+	margin: 20px 0px 40px 63px; 
+}
+
+
+div.js-circle
+{
+	
+}
+
