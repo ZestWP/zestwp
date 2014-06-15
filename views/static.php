@@ -1,5 +1,5 @@
 <div class="wrap">
-    <h2><?php _e(_PLUGIN_NAME .' :: '._MENU_STATIC_TITLE); ?></h2>
+    <h2><?php _e(_PLUGIN_NAME .' :: '._MENU_SCRITPS); ?></h2>
     <br class="clear" />
 	<?php printMsg($msg); errorMsg($error); ?>
 		<form action="admin.php?page=<?php echo $_GET['page']; ?>" id="form-campaign" method="post" enctype="multipart/form-data">
@@ -14,11 +14,6 @@
 			<div class="form-field">
 				<label for="footer" class="width20imp float"><?php _e('Footer');?></label>
 				<textarea name="footer" class="width60imp float" id="footer"><?php echo $static->properties['footer']; ?></textarea>
-			</div><br class="clear"/>
-			
-			<div class="form-field">
-				<label for="google" class="width20imp float"><?php _e('Google analytics');?></label>
-				<textarea name="google" class="width60imp float" id="google"><?php echo $static->properties['google']; ?></textarea>
 			</div><br class="clear"/>
 			
 			<div class="form-field width60"><br class="clear"/>

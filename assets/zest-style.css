@@ -1,0 +1,157 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {background-color: #ffffff !important; margin:0px; padding:0px;}
+.LandingContainer, .Innerrow {width: 100%;	float: left;}
+.LandingInner {	width: 70%;	margin: 0px auto;}
+.header{background-color:#151a23;}
+.logo{width:40%;float:left; padding:15px 0px;}
+.TopMenu{width:40%;float:right; padding:43px 0px 0px 0px;  }
+.footer {background: #151a23 url(images/footer_bg.jpg) left top repeat-x;}
+.banner{ border-top:5px solid #ff942c;}
+.bannerimg{text-align:center;}
+h2.MainHeading{font-family:segoe UI; font-weight:500; font-size:25pt; padding:0px; margin:15px 0px 15px 0px;}
+p.content{font-family:segoe UI; padding:0px; margin:0px; width:70%; margin:0px auto; font-size:11pt;}
+.testimonials{background-color:#3c4047; color:#ffffff; padding:30px 0px 20px 0px; text-align:center; margin:20px 0px 10px 0px;}
+.testimonialsCont, .TestiAuthor{width:70%; text-align:center; margin:0px auto;font-family:segoe UI; font-style:italic; line-height:20px;}
+.content{padding:30px 0px 40px 0px;}
+.contentIcon{float:left;}
+.contentHeading{color:#4c4c4c; font-size:22pt; font-weight:normal; float:left; line-height:35px; vertical-align:bottom;}
+.contentDesc{text-align:justify;}
+.usablity, .scalablity{padding:30px 0px 0px 10px; float:left;}
+.refine{padding-left:10px;}
+.TestiAuthor{width:80%; text-align:right; padding:10px 0px 5px 0px;}
+.contentDesc{width:100%; float:left;}
+.contentCol{float:left;padding-right:10px;;font-family:segoe UI;font-size:11pt; width:29%; margin-right:22px;	 }
+.footer{background:#151a23 url(images/footer_bg.jpg) left top repeat-x;}
+.footer .Innerrow{color:#585a5e; text-align:center; padding:40px 0px 30px 0px;font-family:segoe UI; font-size:10pt; }
+#menu{
+	width:105px;
+	list-style:none;  /*--- Makes the bullets go away ---*/
+	margin:0;  /*--- Take out any default margin on the UL tag ---*/
+	padding:0;  /*--- Take out any default padding on the UL tag ---*/
+	float:right;
+}
+
+#menu li{
+	float:left;  /*--- Make the list go horizontal ---*/
+	margin:0;
+}
+
+#menu li a{
+	display:block;  /*--- Make the entire button are clickable rather than the text alone ---*/
+	text-indent: -9999px; /*--- Push the text off screen to hide text---*/
+	overflow: hidden; /*--- Makes text outside of bounding box hidden ---*/
+	height:33px;
+	
+	
+}
+
+/* 
+The following rules place the "normal" 
+state image as the background for our anchor tags
+*/
+
+#menu li#facebook a{
+	background: url(images/facebook_icon.jpg) no-repeat;
+	width:35px;
+}
+
+#menu li#twitter a{
+	background: url(images/twitter_icon.jpg) no-repeat;	
+	width:35px;
+	
+}
+
+#menu li#linkedin a{
+	background: url(images/linkedin_icon.jpg) no-repeat;	
+	width:35px;
+	
+}
+#menu li#facebook a:hover{
+	background: url(images/facebook_full.jpg) no-repeat;
+}
+#menu li#twitter a:hover{
+	background: url(images/twitter_full.jpg) no-repeat;	
+}
+#menu li#linkedin a:hover{
+	background: url(images/linkedin_full.jpg) no-repeat;	
+}
+.clear{
+	clear:both;  /*--- Clears the float of the list items to restore normal document flow ---*/
+}
+
+
+/* small desktop */
+@media all and (max-width: 1200px) {
+    .state-indicator {
+        z-index: 2;
+    }
+}
+
+/* tablet */
+@media all and (min-width: 1024px) and (max-width: 1150px) {
+.contentHeading{font-size:19pt;}
+.introContent{width:100% !important;}
+.contentCol{width:30%; margin-right:10px;}
+.rightimg, .introLeft{width:49% !important; float:left; text-align:center;}
+.form, .introRight{width:49% !important; float:right;}
+.introLeft{text-align:left; width:40% !important;}
+.introRight{padding:20px 0px 0px 0px;}
+}
+@media all and (max-width: 1024px) {
+	.contentHeading{font-size:18pt;}
+	p.content, .testimonialsCont, .LandingInner{width:90%;}
+	h2.MainHeading{font-size:20pt;}
+	.contentCol{width:30%; margin-right:10px;}
+	.introContent{width:100% !important;}
+.rightimg, .introLeft{width:49% !important; float:left; text-align:center;}
+.form, .introRight{width:49% !important; float:right;}
+.introLeft{text-align:left; width:40% !important;}
+.introRight{padding:20px 0px 0px 0px;}
+}
+
+/* mobile phone */
+@media all and (max-width: 768px) {
+   .contentCol{width:100%; float:left; padding:10px 0px 10px 0px;}
+   .footerLeft, .footerRight{width:100% !important; float:left; border-bottom:1px solid #858585; padding:15px 0px 10px 0px; }
+   .footerRight{border:0px !important;}
+   .footerWhite{margin-top:10px !important;}
+   .introLeft, .introRight, .rightimg, .form{width:100% !important; float:left;}
+   .LandingForm{border-radius:0px !important; }
+   .formbottom{width:95% !important; border:3px solid #383838;border-radius:0px !important; border }
+   .primaryhding{font-size:20pt !important;}
+   .secondaryhding div{width:70% !important; font-size: 13pt; padding:10px;}
+   .downloadbtn{background-color:#383838;width:90% !important; border:3px solid #383838;padding: 40px 20px 20px !important; margin: 0px auto !important; }
+   .showdesktop{display:none !important;}
+}
+
+.around{padding:15px 0px 15px 0px;}
+.alignCenter{text-align:center;}
+.primaryhding{background-color:#f3f3f3;font-family:segoe UI;font-size:28pt; font-weight:normal; text-align:center; padding:5px 0px 5px 0px; color:#333333;}
+.secondaryhding{background-color:#e3e3e3;font-family:segoe UI;font-size:15pt;}
+.secondaryhding div{background-color:#ffffff; width:90%; margin:0px auto; text-align:center; padding:5px;}
+.innerContent{width:90%; margin:0px auto; padding:15px 0px 15px 0px;}
+.ContentCol{width:32%; float:left;}
+.ContentCol h2, .ContentCol p, .ContentCol li, .label, .formdesc, .formbottom, .formFooter, .footerWhite, p.contentsml{font-family:segoe UI;font-size:15pt; font-weight:normal;}
+.ContentCol p{font-size:11pt;}
+.ContentCol h2{font-weight:bold;}
+.ContentCol ul{padding:5px 0px 5px 0px; margin:0px;}
+.ContentCol li{ font-size:11pt; font-weight:bold; background:url(../images/greenbullet.png) left 3px no-repeat; list-style:none; padding-left:20px;}
+.ContentCol li p{padding:10px 0px 10px 0px; margin:0px;}
+.LandingForm{width:90%; margin:0px auto; background-color:#ebebeb; margin-top:20px; border-radius:20px; border:3px solid #383838; padding:40px 20px 20px 20px;}
+.label{ font-size:11pt; font-weight:600; padding:5px 0px 5px 0px;}
+.controls input, .controls textarea, .controls select{ padding:5px; width:95%; border:0px solid #ffa300; background-color:#9d9d9d; border-radius:10px; font-family:segoe UI; font-sie:11pt; color:#ffffff !important; font-weight:800;}
+.ctrlrow{padding:0px 0px 15px 0px;}
+.formdesc{padding:5px 0px 0px 0px; font-size:10pt;}
+.formbottom{ font-size:10pt; background-color:#383838;  width:60%;margin:0px auto; text-align:center; color:#ffffff; padding:3px 3px 7px 3px; font-weight:bold; border-radius:0px 0px 50px 50px;}
+.downloadbtn{float:left; width:100%; text-align:center; padding:20px 0px 10px 0px;}
+.formFooter{ background:#333333 url(../images/footer_curve_bg.png) left top repeat-x; padding:40px 0px 20px 0px; color:#ffffff; font-size:10pt; }
+.bodycont{padding:10px 0px 30px 0px;}
+.footerLeft, .footerRight{width:49%; float:left;}
+.alignLeft{text-align:left ;}
+.testiImage{float:left;}
+.footerWhite{color:#ffffff; font-size:10pt; text-align:center; border-top:1px solid #858585; margin-top:20px; background-color:#333333; float:left; width:100%; padding:20px 0px 10px 0px;}
+p.contentsml{font-size:11pt; padding:0px 0px 10px 0px; margin:-7px 0px 0px 0px;}
+.form{float:right !important;}
+.bodycont{float:left !important;}

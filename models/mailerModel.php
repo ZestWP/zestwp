@@ -84,7 +84,7 @@ class Mailer_Model extends dbZest
 			$email = $this->getById($id);
 			if($email->properties[_TABLE_PAGE_FORM]) $form = $this->getById($email->properties[_TABLE_PAGE_FORM]);
 			else $form = $mailer->getByName(_TABLE_FORM_DEFAULT);
-			
+			$campaign = $email->properties[_TABLE_CAMPAIGN];
 			$source = "type=email&id=".$id;
 		}
 		

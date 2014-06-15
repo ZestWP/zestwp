@@ -1,5 +1,5 @@
 <div class="wrap">
-    <h2><?php _e(_PLUGIN_NAME .' :: '._MENU_TASK_TITLE); ?><a href="admin.php?page=<?php _e(_PLUGIN_NAME);?>-tasks&id=0" class="add-new-h2"><?php _e('New Task');?></a></h2><?php printMsg($msg); errorMsg($error); ?>
+    <h2><?php _e(_PLUGIN_NAME .' :: '._MENU_TASK_TITLE); ?><a href="<?php echo zest_url().'ajax/add-task.php';?>" rel="lightbox" setDimension="600X600" class="add-new-h2"><?php _e('New Task');?></a></h2>
 	<table class="calendar" cellspacing="0" cellpadding="0">
 	<thead><tr>
 	<th><a href="admin.php?page=<?php _e(_PLUGIN_NAME);?>-tasks&m=<?php echo date('m', $prev_month);?>&y=<?php echo date('Y', $prev_month);?>">Prev</a></th>
@@ -22,16 +22,16 @@
 					}
 
 					if ( $day == gmdate('j', current_time('timestamp')) && $m == gmdate('m', current_time('timestamp')) && $y == gmdate('Y', current_time('timestamp')) )
-						$calendar_output .= '<td id="today">';
+						$calendar_output .= '<td id="today" rel="'.$day.'-'.$m.'-'.$y.'" class="'.$day.'-'.$m.'-'.$y.'">';
 					else
-						$calendar_output .= '<td>';
+						$calendar_output .= '<td rel="'.$day.'-'.$m.'-'.$y.'" class="'.$day.'-'.$m.'-'.$y.'">';
 						
-					$calendar_output .= "<span class='days'>".$day.'</span>';
+					$calendar_output .= "<span class='days' >".$day.'</span>';
 						
 					$cur =  mktime(0, 0 , 0, $m, $day, $y);
 					if(isset($tasks[$cur])){
 						foreach($tasks[$cur] as $c){
-							$calendar_output .= '<div class="tasks"><a href="'.$link.$c['id'].'">'.$c['name']."</a></div>";
+							$calendar_output .= '<div class="tasks"><a class="c'.$c['id'].'" rel="lightbox" setDimension="600X600" href="'.zest_url().'ajax/add-task.php?id='.$c['id'].'">'.$c['name']."</a></div>";
 						}
 					}
 					
@@ -47,8 +47,9 @@
 		?>
 	</tbody>
 	</table>
-
+<div style="display:none;"><a id="create" rel="lightbox" setDimension="600X600">true</a></div>
 </div>
+
 <style>
 .calendar{width:100%;}
 .calendar td{border:1px solid #DDD;height:100px;vertical-align:top;}
@@ -57,3 +58,15 @@
 .days{font-weight:bold;}
 .tasks{padding-left:12px;width:90%;}
 </style>
+<script>
+jQuery(document).ready( function($) {
+	var h = "<?php echo zest_url().'ajax/add-task.php';?>";
+	$('.calendar').delegate('td', 'dblclick', function(){
+		$d = $(this).attr('rel');
+		$('#create').attr('href', h+"?date="+$d);
+		$('#create').click();
+		
+	});
+});
+
+</script>

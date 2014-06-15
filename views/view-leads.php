@@ -42,6 +42,7 @@
 						   </div> <br class="clear" />';
 					break;
 				case 'textbox':
+					if(sizeof($prop)>0)
 					foreach($prop as $i=>$sel){
 						echo '<input type="hidden" name="textbox['.$i.']" value="'.$sel.'"/>
 							<div class="rows">
@@ -60,6 +61,8 @@
 							
 						   </div> <br class="clear" />';
 				case 'textarea':
+					
+					if(is_array($prop))
 					foreach($prop as $i=>$sel){
 						echo '<input type="hidden" name="textarea['.$i.']" value="'.$sel.'"/>
 							<div class="rows">
@@ -72,6 +75,7 @@
 				case 'captcha':
 					break;
 				case 'select':
+					if(is_array($prop))
 					foreach($prop as $i=>$sel){
 						echo '<input type="hidden" name="select['.$i.']" value="'.$sel.'"/>
 							<div class="rows">
@@ -83,11 +87,12 @@
 					break;
 				case 'radio':
 				case 'checkbox':
+					if(is_array($prop))
 					foreach($prop as $i=>$sel){
-						echo '<input type="hidden" name="'.$k.'['.$i.']" value="'.implode(',',$sel).'"/>
+						echo '<input type="hidden" name="'.$k.'['.$i.']" value="'.@implode(',',$sel).'"/>
 							<div class="rows">
 							<div class="col1">'.$array[$k].'</div>
-							<div class="col2">'.implode(',',$sel).'</div>
+							<div class="col2">'.@implode(',',$sel).'</div>
 							
 						   </div> <br class="clear" />';
 					}

@@ -114,4 +114,17 @@ class Email_Model extends dbZest
 	public function getAllForm(){
 		return array_merge($this->allRecord(_TABLE_FORM_DEFAULT), $this->allRecord(_TABLE_FORM));
 	}
+	
+	public function getEmails(){
+		return $this->allRecord($this->name);
+	}
+	
+	
+	public function getStatic(){
+		$row =  $this->allRecord(_TABLE_STATIC);
+		if(isset($row[0]->properties))
+			$row[0]->properties = unserialize($row[0]->properties);
+		if(!empty($row[0]))
+		return $row[0];
+	}
 }

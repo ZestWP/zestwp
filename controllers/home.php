@@ -19,7 +19,9 @@ class Home
 		$rate = $this->model->OpenMails();
 		$leads = $this->model->getLeads();
 		$tasks = $this->model->getTasks();
-		//echo '<pre>';print_r($tasks);exit;
+		$forms = $this->model->getForms();
+		$campaigns = $this->model->getCampaigns();
+
 		wp_enqueue_script('highcharts', zest_url().'assets/highcharts.js');
 		wp_enqueue_script('chart_data', zest_url().'assets/chart_data.js');
 		wp_enqueue_script('jContent', zest_url().'assets/jcontent.js');

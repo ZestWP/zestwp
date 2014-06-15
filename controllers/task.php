@@ -47,6 +47,11 @@ class Task
 		$next_month = strtotime( '+1 month', $unixmonth );
 		$prev_month = strtotime( '-1 month', $unixmonth );
 			
+			
+		wp_enqueue_script('lightbox', zest_url().'assets/lightbox.js');
+		wp_enqueue_style('datepicker', zest_url().'assets/ui.min.css');
+		wp_enqueue_script('datepicker', zest_url().'assets/ui.min.js');
+		
 		require(__ZEST_PATH.'/views/tasks.php');
 	
 	}

@@ -20,7 +20,7 @@ jQuery(document).ready( function($) {
         $('body').append($fade).append($box);
         $box.append($inner);
         $box.fadeIn(600);$fade.fadeIn(400);
-        $inner.empty().html(' id="spinnerdiv" style="display:block;margin-left:40%;"><img src="images/spinner.gif"> /><b>loading...</b></div>');
+        $inner.empty().html('<div id="spinnerdiv" style="display:block;margin-left:40%;"><img src="images/spinner.gif"> </div>');
         $.ajax({
             url: $href,
                 success: function(data){

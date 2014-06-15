@@ -36,41 +36,101 @@ class Core
 		if( function_exists('add_options_page') ) {
             $base = $this->_pluginName;
             $setup = $this->_pluginName.'-setup';
-			
-            #>Add Main Menu Page
-            if ( function_exists('add_object_page') ) {
-                    add_object_page($this->_shortName, $this->_shortName, 'manage_options', $base, array());
-            } else {
-                    add_menu_page($this->_shortName, $this->_shortName, 'manage_options', $base);
-            }
-		
+			$bCampaign = $base."-campaign-dashboard";
+			$bEmail = $base."-email-marketing";
+			$bForm = $base."-forms";
+			$bl = $base."lp";
+			$bCrm = $base."-crm";
+			$bSocial = $base."-social";
+			$bSettings = $base."-settings";
+			//1 Dashboard
+            if ( function_exists('add_object_page') )
+                add_object_page($this->_shortName, $this->_shortName, 'manage_options', $base, array());
+            else
+                add_menu_page($this->_shortName, $this->_shortName, 'manage_options', $base);
+            
 			add_submenu_page($base, _MENU_DASHBOARD, _MENU_DASHBOARD_TITLE, 'manage_options', $base, array( $this->home, 'dashboard' ) );
-			add_submenu_page($base, _MENU_CAMPAIGN, _MENU_CAMPAIGN_TITLE, 'manage_options', $base."-campaign", array( $this->campaign, 'campaign' ) );
-			add_submenu_page($base, _MENU_EMAIL_GROUP, _MENU_EMAIL_GROUP_TITLE, 'manage_options', $base."-egroup", array( $this->egroup, 'group' ) );
-			add_submenu_page($base, _MENU_EMAIL, _MENU_EMAIL_TITLE, 'manage_options', $base."-email", array( $this->email, 'email' ) );
-			add_submenu_page($base, _MENU_ZESTMAIL, _MENU_ZESTMAIL_TITLE, 'manage_options', $base."-email-marketing", array( $this->mailer, 'email' ) );
-			add_submenu_page($base, _MENU_LANDINGPAGE, _MENU_LANDINGPAGE, 'manage_options', "edit.php?post_type="._MENU_LANDINGPAGE_MENU );
+			//add_submenu_page($base, _MENU_ANALYTICS, _MENU_ANALYTICS, 'manage_options', $base."-analytics", array( $this->home, 'analytics' ) );
 			
-			 register_post_type(_MENU_LANDINGPAGE_MENU, array(
+			//2 Tasks
+			if ( function_exists('add_object_page') )
+                add_object_page(_MENU_CONTENT, _MENU_CONTENT, 'manage_options', $base.'-tasks', array());
+            else
+                add_menu_page(_MENU_CONTENT, _MENU_CONTENT, 'manage_options', $base.'-tasks');
+            
+			add_submenu_page($base.'-tasks', _MENU_TASK, _MENU_TASK, 'manage_options', $base.'-tasks', array( $this->task, 'tasks' ) );
+			
+			//3 Campaign
+			if ( function_exists('add_object_page') )
+                add_object_page(_MENU_CAMPAIGN_BOARD, _MENU_CAMPAIGN_BOARD, 'manage_options', $bCampaign, array());
+            else
+                add_menu_page(_MENU_CAMPAIGN_BOARD, _MENU_CAMPAIGN_BOARD, 'manage_options', $bCampaign);
+            
+			add_submenu_page($bCampaign,_MENU_CAMPAIGN_DASHBOARD,_MENU_CAMPAIGN_DASHBOARD,'manage_options',$bCampaign, array( $this->campaign, 'dashboard' ));
+			add_submenu_page($bCampaign, _MENU_CAMPAIGN, _MENU_CAMPAIGN, 'manage_options', $base."-campaign", array( $this->campaign, 'campaign' ) );
+			
+			//4 Email marketing
+			if ( function_exists('add_object_page') )
+                add_object_page(_MENU_ZESTMAIL, _MENU_ZESTMAIL, 'manage_options', $bEmail, array());
+            else
+                add_menu_page(_MENU_ZESTMAIL, _MENU_ZESTMAIL, 'manage_options', $bEmail);
+            
+			add_submenu_page($bEmail, _MENU_EMAIL_OVERVIEW, _MENU_EMAIL_OVERVIEW, 'manage_options', $bEmail, array( $this->email, 'dashboard' ) );
+			add_submenu_page($bEmail, _MENU_EMAIL, _MENU_EMAIL_TITLE, 'manage_options', $base."-email", array( $this->email, 'email' ) );
+			add_submenu_page($bEmail, _MENU_EMAIL_GROUP, _MENU_EMAIL_GROUP_TITLE, 'manage_options', $base."-egroup", array( $this->egroup, 'group' ) );
+			add_submenu_page($bEmail, _MENU_ZESTMAIL, _MENU_ZESTMAIL_TITLE, 'manage_options', $base."-marketing", array( $this->mailer, 'email' ) );
+			add_submenu_page($bEmail, _MENU_SMTP, _MENU_SMTP, 'manage_options', $setup, array( $this->mailer, 'smtp' ) );
+			
+			//5 Landing page
+			if ( function_exists('add_object_page') )
+                add_object_page(_MENU_LANDINGPAGE, _MENU_LANDINGPAGE, 'manage_options', "edit.php?post_type="._MENU_LANDINGPAGE_MENU, array());
+            else
+                add_menu_page(_MENU_LANDINGPAGE, _MENU_LANDINGPAGE, 'manage_options', "edit.php?post_type="._MENU_LANDINGPAGE_MENU);
+            
+			register_post_type(_MENU_LANDINGPAGE_MENU, array(
 				'public' => true,
 				'label'  => _MENU_LANDINGPAGE ,
 				'labels' =>  array('add_new_item' => "Add new "._MENU_LANDINGPAGE ),
 				'supports' => array('title', 'editor')
 				));
 			
-			if ( function_exists('add_object_page') ) {
-				add_object_page($this->_shortName.' Setup', $this->_shortName.' Setup', 'manage_options', $setup, array());
-            } else {
-				add_menu_page($this->_shortName.' Setup', $this->_shortName.' Setup', 'manage_options', $setup);
-            }
+			//6 Forms
+			if ( function_exists('add_object_page') )
+                add_object_page(_MENU_FORMS, _MENU_FORMS, 'manage_options', $bForm, array());
+            else
+                add_menu_page(_MENU_FORMS, _MENU_FORMS, 'manage_options', $bForm);
+            
+			add_submenu_page($bForm, _MENU_FORM_OVERVIEW, _MENU_FORM_OVERVIEW, 'manage_options', $bForm, array( $this->form, 'dashboard' ) );
+			add_submenu_page($bForm, _MENU_FORM, _MENU_FORM, 'manage_options', $base."-form", array( $this->form, 'setup' ) );
+		//	add_submenu_page($bForm, _MENU_EMAIL_GROUP, _MENU_EMAIL_GROUP_TITLE, 'manage_options', $base."-form-export", array( $this->form, 'export' ) );
 			
-			add_submenu_page($setup, _MENU_SMTP, _MENU_SMTP_TITLE, 'manage_options', $setup, array( $this->mailer, 'smtp' ) );
-			add_submenu_page($setup, _MENU_FORM, _MENU_FORM_TITLE, 'manage_options', $base.'-form', array( $this->form, 'setup' ) );
-			add_submenu_page($setup, _MENU_STATIC, _MENU_STATIC_TITLE, 'manage_options', $base.'-analytics', array( $this->form, 'staticAdmin' ) );
-			add_submenu_page($setup, _MENU_LEADS, _MENU_LEADS_TITLE, 'manage_options', $base.'-leads', array( $this->crm, 'leads' ) );
-			add_submenu_page($setup, _MENU_USERS, _MENU_USERS_TITLE, 'manage_options', $base.'-users', array( $this->crm, 'users' ) );
-			add_submenu_page($setup, _MENU_TASK, _MENU_TASK_TITLE, 'manage_options', $base.'-tasks', array( $this->task, 'tasks' ) );
+			//7 CRM
+			if ( function_exists('add_object_page') )
+                add_object_page(_MENU_CRM_HOME, _MENU_CRM_HOME, 'manage_options', $bCrm, array());
+            else
+                add_menu_page(_MENU_CRM_HOME, _MENU_CRM_HOME, 'manage_options', $bCrm);
+            
+			add_submenu_page($bCrm, _MENU_CRM_OVERVIEW, _MENU_CRM_OVERVIEW, 'manage_options', $bCrm, array( $this->crm, 'dashboard' ) );
+			add_submenu_page($bCrm, _MENU_LEADS, _MENU_LEADS_TITLE, 'manage_options', $base.'-leads', array( $this->crm, 'leads' ) );
+			add_submenu_page($bCrm, _MENU_USERS, _MENU_USERS_TITLE, 'manage_options', $base.'-users', array( $this->crm, 'users' ) );
 			
+			//8 Social Media
+			if ( function_exists('add_object_page') )
+                add_object_page(_MENU_SOCIAL_MEDIA, _MENU_SOCIAL_MEDIA, 'manage_options', $bSocial, array());
+            else
+                add_menu_page(_MENU_SOCIAL_MEDIA, _MENU_SOCIAL_MEDIA, 'manage_options', $bSocial);
+            
+			add_submenu_page($bSocial, _MENU_SOCIAL_DASHBOARD, _MENU_SOCIAL_DASHBOARD, 'manage_options', $bSocial, array( $this->crm, 'social' ) );
+			//add_submenu_page($bSocial, _MENU_SOCIAL_INTEGRATION, _MENU_SOCIAL_INTEGRATION, 'manage_options', $bSocial.'-integration', array( $this->crm, 'integration' ) );
+			
+			//9 Settings
+			if ( function_exists('add_object_page') )
+                add_object_page(_MENU_STATIC_SETTINGS, _MENU_STATIC_SETTINGS, 'manage_options', $bSettings, array());
+            else
+                add_menu_page(_MENU_STATIC_SETTINGS, _MENU_STATIC_SETTINGS, 'manage_options', $bSettings);
+            
+			add_submenu_page($bSettings, _MENU_SCRITPS, _MENU_SCRITPS, 'manage_options', $bSettings, array( $this->form, 'staticAdmin' ) );
+			add_submenu_page($bSettings, _MENU_GOOGLE, _MENU_GOOGLE, 'manage_options', $bSettings.'-google', array( $this->form, 'google' ) );
 			
 			add_action( 'add_meta_boxes', array($this->campaign, 'addMetaBox'));
 			add_action('admin_init', array($this->campaign, 'saveCampaign'));

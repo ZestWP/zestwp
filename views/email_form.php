@@ -2,6 +2,10 @@
 <?php if(sizeof($form)>0){ 
 echo '<input name="lead" value="1" type="hidden"/>';
 echo '<input name="source" value="'.$source.'" type="hidden"/>';
+echo '<input name="form" value="'.$form->id.'" type="hidden"/>';
+if(!empty($campaigns[0]['campaign']) && sizeof($campaigns[0]['campaign'])>0)
+foreach($campaigns[0]['campaign'] as $c) echo '<input name="campaign[]" value="'.$c.'" type="hidden"/>';
+if($campaign) echo '<input name="campaign[]" value="'.$campaign.'" type="hidden"/>';
 foreach($form->properties as $k=>$v){
 	switch($k){
 		case 'fname':

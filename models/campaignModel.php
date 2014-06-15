@@ -78,12 +78,54 @@ class Campaign_Model extends dbZest
 			add_post_meta( $object_id, _TABLE_PAGE_FORM, $data );
 		}
 	}
-	
+	public function pageType($post, $object_id){
+		if(sizeof($post)>0){
+			$data[_TABLE_PAGE_TYPE] = $post;
+			delete_post_meta( $object_id, _TABLE_PAGE_TYPE);
+			add_post_meta( $object_id, _TABLE_PAGE_TYPE, $data );
+		}
+	}
 	public function getAllForm(){
 		return array_merge($this->allRecord(_TABLE_FORM_DEFAULT), $this->allRecord(_TABLE_FORM));
 	}
 	
 	public function storeLead($details = array()){
 		return $this->insert(_TABLE_LEAD, $details);
+	}
+	
+	public function getEmails($id = 0){
+		$cmp = _TABLE_CAMPAIGN;
+		$table = _TABLE_EMAIL;
+		$ser = serialize($cmp).serialize((string)$id);
+		$s = ($ser !="") ? " AND properties LIKE '%{$ser}%' " : "";;
+		$sql = "SELECT id, properties FROM TABLE_NAME WHERE `name`='{$table}' {$s} ";
+		$ret =  $this->execQuery($sql);
+		$m = array();
+		if(sizeof($ret))
+			foreach($ret as $rs){
+				$p = unserialize($rs->properties);
+				$m[$rs->id] = $p['title'];
+			}
+			
+		return $m;
+	}
+	
+	public function getPosts($id = 0){
+		global $wpdb;
+		$page = _TABLE_PAGE_CAMPAIGN;
+		$metaSer = serialize((string) $id);
+		$per = $this->execQuery( 
+				"SELECT post_id as pid
+					FROM {$wpdb->postmeta}
+					WHERE `meta_key` = '{$page}' && `meta_value` LIKE '%{$metaSer}%'
+				"
+			);
+		$m = array();
+		if(sizeof($per))
+		foreach($per as $p){
+			$page = get_post($p->pid);
+			$m[$p->pid] = ($page->post_name);
+		}
+		return $m;
 	}
 }

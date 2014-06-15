@@ -96,7 +96,8 @@
 			<h3><?php _e('Publish'); ?></h3>
 			<div class="inside">
 				<label for="default">
-				<input name="default" id="default" value="1" type="checkbox" /><?php _e('Make Default');?></label>
+				<?php $e = ($form->name == _TABLE_FORM_DEFAULT) ? 'checked="checked"' : ''; ?>
+				<input name="default" id="default" value="1" type="checkbox" <?php echo $e; ?>/><?php _e('Make Default');?></label>
 				<?php $datef = __( 'M j, Y @ G:i' ); ?>
 				<p>Created : <?php _e(date_i18n( $datef, strtotime( $form->created ) )) ?> </p>
 				<p>Last Modified :  <?php _e(date_i18n( $datef, strtotime( $form->modified ) )) ?></p>

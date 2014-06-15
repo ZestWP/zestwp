@@ -112,7 +112,7 @@ label{font-weight:bold;}
 
 .rightPanel .handlediv{	padding-top:12px ;}
 .rightPanel .handlediv:before{content: '\25b2';}
-.handleclose:before{content: '\25bc';}
+.handleclose:before{content: '\25bc' !important;}
 .list-item{display:none;word-wrap:break-word;}
 .list-item label{word-wrap:break-word;font-weight:normal;}
 .list-item  b{font-size:1.05em;font-weight:bold;}
@@ -121,3 +121,55 @@ label{font-weight:bold;}
 .toClone{border:1px solid #ccc;padding:5px;margin:5px;}
 .addCustom, .removeCustom{color:#333;text-decoration:underline;}
 .addCustom:hover, .removeCustom:hover{color:#333;text-decoration:none;}
+
+div.topBand{float:left;background-color:#2D506E;height:95px;width:100%;color:white;}
+div.topBandFiller{float:left;background-color:#2D506E;height:95px;width:20px;margin-left:-20px;}
+
+div.topBand .seperator{float:left;width:60px;height:80%;background:url("images/seperator.png") 0 10px no-repeat;}
+div.topBand .visits{float:left;width:10%;margin-left:10px;background:url("images/visits.png") 0 15px no-repeat;height:100%;padding-left:50px;padding-top:20px; }
+div.topBand .leads{float:left;width:10%;background:url("images/leads.png") 0 15px  no-repeat;height:100%;padding-left:65px;padding-top:20px;}
+div.topBand .mails{float:left;width:10%;background:url("images/mails.png") 0 15px  no-repeat;height:100%;padding-left:80px;padding-top:20px;}
+div.topBand .views{float:left;width:10%;background:url("images/views.png") 0 15px  no-repeat;height:100%;padding-left:55px;padding-top:20px;}
+span.f30{font-weight:bold;font-size:30px;line-height:36px;}
+@media only screen 
+and (max-width : 900px) {
+	div.topBand{float:left;background-color:#2D506E;height:95px;width:100%;color:white;}
+	div.topBandFiller{float:left;background-color:#2D506E;height:95px;width:20px;margin-left:-20px;}
+
+	div.topBand .seperator{float:left;height:80%;background:url("images/seperator.png") 0 10px no-repeat;}
+	div.topBand .visits{float:left;width:8%;margin-left:10px;background:url("images/visits.png") 0 10px no-repeat;height:100%;padding-left:40px;padding-top:20px;}
+	div.topBand .leads{float:left;width:8%;background:url("images/leads.png") 0 10px  no-repeat;height:100%;padding-left:55px;padding-top:20px;}
+	div.topBand .mails{float:left;width:8%;background:url("images/mails.png") 0 10px  no-repeat;height:100%;padding-left:70px;padding-top:20px;}
+	div.topBand .views{float:left;width:8%;background:url("images/views.png") 0 10px  no-repeat;height:100%;padding-left:55px;padding-top:20px;}
+	span.f30{font-weight:bold;font-size:30px;line-height:36px;}
+
+
+}
+@media only screen 
+and (max-width : 680px) {
+	div.topBand{float:left;background-color:#2D506E;height:95px;width:100%;color:white;}
+	div.topBandFiller{float:left;background-color:#2D506E;height:95px;width:20px;margin-left:-20px;}
+
+	div.topBand .seperator{float:left;height:80%;background:url("images/seperator.png") 0 3px no-repeat;}
+	div.topBand .visits{float:left;width:6%;background:none;height:100%;padding-top:20px; margin-left:0px; padding-left:0px;}
+	div.topBand .leads{float:left;width:6%;background:none;height:100%;padding-top:20px;margin-left:0px; padding-left:0px;}
+	div.topBand .mails{float:left;width:6%;background:none;height:100%;padding-top:20px;margin-left:0px; padding-left:0px;}
+	div.topBand .views{float:left;width:6%;background:none;height:100%;padding-top:20px;margin-left:0px; padding-left:0px;}
+	span.f30{font-weight:bold;font-size:26px;line-height:28px;}
+
+
+}
+
+#chartTabs{border-radius:3px;float:right;cursor:pointer;margin-right:50px;font-weight:normal;margin-top:-4px;font-size:14px;}
+#chartTabs .tab{float:right;padding:3px 10px 3px 10px;background-color:#ddd;border:1px solid #ccc;border-radius:3px;margin:0 3px 0 3px;}
+#chartTabs .tab.active{background-color:#bbb;}
+
+.formAnalytics.grid, .formAnalytics.tblrow{width:100%; float:left;}
+.formAnalytics .tblheader{ background-color:#b1cfe6;}
+.formAnalytics.tblrow{display:table-row;}
+.formAnalytics.alternate{background-color:#dff1f7;}
+.formAnalytics.cola, .formAnalytics.colb, .formAnalytics.colc, .formAnalytics.cold{display:table-cell; font-family:segoe ui; padding:5px; color:#696969;}
+.formAnalytics.cola{width:50%; float:left;}
+.formAnalytics.colb{width:14%; float:left;}
+.formAnalytics.colc{width:14%;float:left;}
+.formAnalytics.cold{width:14%;float:left;}

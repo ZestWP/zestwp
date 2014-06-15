@@ -15,6 +15,20 @@ class Crm
 		require_once(__ZEST_PATH."/models/crmModel.php");
 		$this->model = new Crm_Model();
     }
+	public function dashboard(){
+		$leads = $this->model->getCrms();
+		$users = $this->model->getUsers();
+		
+		require(__ZEST_PATH.'/views/crm-dashboard.php');
+	
+	}
+	
+	public function social(){
+		$pages = $this->model->getPages();
+		
+		require(__ZEST_PATH.'/views/social-dashboard.php');
+	
+	}
 	public function leads(){
 		if(isset($_GET['id'])){
 			if(isset($_GET['action']) && $_GET['action'] == 'delete'){

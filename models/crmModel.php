@@ -152,4 +152,8 @@ class Crm_Model extends dbZest
 	public function exportUsers(){
 		
 	}
+	
+	public function getPages(){
+		return new WP_Query( array( 'post_type' => _MENU_LANDINGPAGE_MENU, 'posts_per_page' => 10000 ) );	
+	}
 }

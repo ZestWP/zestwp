@@ -15,6 +15,14 @@ class Form
 		$this->model = new Form_Model();
     }
 
+	public function  dashboard(){
+		
+		$forms = $this->model->getForms();
+		$default = $this->model->defaultForm();
+		
+		require(__ZEST_PATH.'/views/form-dashboard.php');
+    }
+	
 	public function setup(){
 		if(isset($_POST['id'])){
 			$this->postform();
@@ -81,12 +89,23 @@ class Form
 
 	public function staticAdmin(){
 		if(isset($_POST['save'])){
-			$yes = $this->model->saveStatic($_POST);
+			$yes = $this->model->saveStatic($_POST, 'scripts');
 			if(!$yes) $error = "Update error";
 			else $msg = "Updated successfully";
 		}
 		$static = $this->model->getStatic();
 		
 		require_once(__ZEST_PATH."/views/static.php");
+	}
+	
+	public function google(){
+		if(isset($_POST['save'])){
+			$yes = $this->model->saveStatic($_POST, 'google');
+			if(!$yes) $error = "Update error";
+			else $msg = "Updated successfully";
+		}
+		$static = $this->model->getStatic();
+		
+		require_once(__ZEST_PATH."/views/google.php");
 	}
 }

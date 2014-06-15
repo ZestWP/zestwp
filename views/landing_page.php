@@ -5,7 +5,7 @@
 <title><?php _e(get_the_title($page->ID)) ?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<?php echo zest_url().'assets/style.css'; ?>"/>
-</head>
+<?php if(!empty($static->properties['header'])) echo ($static->properties['header']); ?></head>
 <body>
 <!-- Header Area -->
 <div class="LandingContainer header">
@@ -40,5 +40,7 @@
   	<div class="Innerrow">ZestWP © 2014. All Rights Reserved</div>
   </div>
 </div>
+<?php if(!empty($static->properties['footer'])) echo ($static->properties['footer']); ?>
+<?php if(!empty($static->properties['google'])) echo ($static->properties['google']); ?>
 </body>
 </html>

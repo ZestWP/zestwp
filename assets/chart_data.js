@@ -18,9 +18,30 @@ jQuery(document).ready(function($)
 });
 
 jQuery(document).ready(function($){
-	$('#high-chart').highcharts({
+	chartOptions = {
+		labels: {
+			items : [{
+				html : mIncVis,
+				style : {
+					left : '10px',
+					top : '10px',
+					fontSize : '14px',
+					color:'#999'
+				}
+			},
+			{
+				html : mIncLead,
+				style : {
+					left : '10px',
+					top : '40px',
+					fontSize : '14px',
+					color:'#999'
+				}
+			}]
+		},
 		chart: {
-			type: 'area'
+			type: 'area',
+			renderTo: 'high-chart'
 		},
 		title: {
 			text: 'Visitors & Leads'
@@ -31,7 +52,8 @@ jQuery(document).ready(function($){
 				text: 'Numbers'
 			},
 		},
-		xAxis: {	categories: xaxis,
+		xAxis: {	
+			categories: xMonth,
 			allowDecimals: false,
 			labels: {
 				formatter: function() {
@@ -58,12 +80,68 @@ jQuery(document).ready(function($){
 			}
 		},
 		series: [{
-			name: 'Visitors',
-			data: yaxis
+			name: 'Unique visitors',
+			data: mVisitor
 		}, {
 			name: 'Leads',
-			data: yleads
-		}]
+			data: mLead
+		}],
+	
+	};
+	
+	var chart = new Highcharts.Chart(chartOptions);
+	
+	
+	$('#hourly').click(function(){
+		$('#chartTabs .tab').removeClass('active');
+		$(this).addClass('active');
+		if(hVisitor.length > 20 || hLead.length > 20) chartOptions.xAxis.tickInterval = 3;
+		else if(hVisitor.length > 15 || hLead.length > 15) chartOptions.xAxis.tickInterval = 2;
+		chartOptions.labels.items[0].html= hIncVis;
+		chartOptions.labels.items[1].html= hIncLead;
+		chartOptions.series[0].data= hVisitor;
+		chartOptions.series[1].data= hLead
+		chartOptions.xAxis.categories= xHour
+		var chart = new Highcharts.Chart(chartOptions);
+		
+	});
+	
+	$('#month').click(function(){
+		$('#chartTabs .tab').removeClass('active');
+		$(this).addClass('active');
+		chartOptions.labels.items[0].html= mIncVis;
+		chartOptions.labels.items[1].html= mIncLead;
+		chartOptions.series[0].data= mVisitor;
+		chartOptions.series[1].data= mLead
+		chartOptions.xAxis.categories= xMonth
+		var chart = new Highcharts.Chart(chartOptions);
+		
+	});
+	
+	$('#day').click(function(){
+		$('#chartTabs .tab').removeClass('active');
+		$(this).addClass('active');
+		if(dVisitor.length > 20 || dLead.length > 20) chartOptions.xAxis.tickInterval = 3;
+		else if(dVisitor.length > 15 || dLead.length > 15) chartOptions.xAxis.tickInterval = 2;
+		chartOptions.labels.items[0].html= dIncVis;
+		chartOptions.labels.items[1].html= dIncLead;
+		chartOptions.series[0].data= dVisitor;
+		chartOptions.series[1].data= dLead
+		chartOptions.xAxis.categories= xDay
+		var chart = new Highcharts.Chart(chartOptions);
+		
+	});
+	
+	$('#year').click(function(){
+		$('#chartTabs .tab').removeClass('active');
+		$(this).addClass('active');
+		chartOptions.labels.items[0].html= yIncVis;
+		chartOptions.labels.items[1].html= yIncLead;
+		chartOptions.series[0].data= yVisitor;
+		chartOptions.series[1].data= yLead
+		chartOptions.xAxis.categories= xYear
+		var chart = new Highcharts.Chart(chartOptions);
+		
 	});
 	
 	

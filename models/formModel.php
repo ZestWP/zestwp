@@ -81,7 +81,7 @@ class Form_Model extends dbZest
 		return $row[0];
 	}
 	
-	public function saveStatic($post){
+	public function saveStatic($post, $source = ''){
 		
 		if (is_uploaded_file($_FILES['logo']['tmp_name'])) {
 				$handle = file_get_contents($_FILES['logo']['tmp_name'], "r");
@@ -93,6 +93,16 @@ class Form_Model extends dbZest
 		if(isset($post['id']) && $post['id']>0){
 			$static = $this->getStatic();
 			if($static->properties['img']) $post['img'] = $static->properties['img'];
+			
+			if($source == 'scripts'){
+				$post['google'] = $static->properties['google'];
+			}
+			else if($source == 'google'){
+				$post['header'] = $static->properties['header'];
+				$post['footer'] = $static->properties['footer'];
+			
+			}
+			
 			return $this->update($this->tableStatic, $post, $post['id']);
 		}
 		else return $this->insert($this->tableStatic, $post);

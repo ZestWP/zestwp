@@ -16,6 +16,17 @@ class Email
 		$this->model = new Email_Model();
     }
     
+	public function  dashboard(){
+		
+		$emails = $this->model->getEmails();
+		
+		$Home = new Home_Model();
+		$mails = $Home->sentMails();
+		$rate = $Home->OpenMails();
+
+		require(__ZEST_PATH.'/views/email-dashboard.php');
+    }
+	
 	public function email(){
 		if(isset($_POST['test_mail'])){
 			$this->testMail();
@@ -163,6 +174,7 @@ class Email
 		if(sizeof($page)>0){
 			setup_postdata( $page ); 
 			$meta = get_post_meta( $page->ID, _TABLE_PAGE_FORM );
+			$campaigns = get_post_meta( $page->ID, _TABLE_PAGE_CAMPAIGN );
 			$sel = $meta[0][_TABLE_PAGE_FORM] ? $meta[0][_TABLE_PAGE_FORM] : array();
 			$mailer = new Mailer_Model();
 			if($sel) $form = $this->model->getEmail($sel);
@@ -171,7 +183,12 @@ class Email
 			$source = "type=page&id=".$page->ID;
 			
 			
-			require(__ZEST_PATH.'/views/landing_page.php');
+			$static = $this->model->getStatic();
+			$pageType = get_post_meta( $page->ID, _TABLE_PAGE_TYPE );
+			if(isset($pageType[0][_TABLE_PAGE_TYPE]) && $pageType[0][_TABLE_PAGE_TYPE] == 'lead')
+				require(__ZEST_PATH.'/views/track-landing.php');
+			else
+				require(__ZEST_PATH.'/views/landing_page.php');
 			exit;
 		}return;
 	}
