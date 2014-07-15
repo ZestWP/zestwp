@@ -1,6 +1,6 @@
 <div class="wrap">
     <h2>
-		<?php _e(_MENU_CAMPAIGN_TITLE); ?> 
+		<?php _e($this->title); ?> 
 	</h2>
 	<?php if (!empty($campaigns)): ?>
 		
@@ -13,7 +13,7 @@
         <tr>
 			<td id="<?php echo $item->id;?>"><a  class="editCampaign" href="javascript:void(0);"><?php echo $getList['name']; ?></a>
 			<div class="row-actions">
-				<span class="edit"><a  class="editCampaign"  href="javascript:void(0);"><?php _e('View Performance');?></a> </span>
+				<span class="editPer"><?php _e('View Performance');?></span>
 			</div>
 		</td>
         </tr>
@@ -35,6 +35,10 @@
 <script type="text/javascript">
 jQuery(document).ready( function($) {
 	$('#all').delegate('.editCampaign', 'click', function(){
+		$id = $(this).parents('td').attr('id');
+		if($('#'+$id).attr('rel') =='clicked') return false;
+		$('#all td').removeAttr('rel').removeClass('hilight');
+		$('#'+$id).attr('rel','clicked').addClass('hilight');
 		$('#view').empty().html('<tr><td>Loading...</td></tr>').show();
 		$id = $(this).parents('td').attr('id');
 		$.get('<?php echo  zest_url();?>ajax/performance.php?id=' + $id, function(data){

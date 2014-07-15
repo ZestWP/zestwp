@@ -1,5 +1,5 @@
 <div class="wrap">
-    <h2><?php _e(_PLUGIN_NAME .' :: '._MENU_EMAIL_TITLE); ?></h2>
+    <h2><?php _e(_PLUGIN_NAME .' :: '.$this->title); ?></h2>
 	<?php printMsg($msg); errorMsg($error); ?>
 		<form action="admin.php?page=<?php echo $_GET['page']; ?>" id="form-email" method="post" >
 		<input type="hidden" name="id" value="<?php echo $id; ?>" />
@@ -16,6 +16,7 @@
 			<div class="form-field form-required width80">
 				<label for="title"><?php _e('Enter Title here');?></label>
 				<input type="text" name="title" value="<?php echo $email->properties['title']; ?>" id="title" autocomplete="off" />
+				<span class="description"><br>This is the email title name for your reference. Customers will not see this.</span>
 			</div><br class="clear" />
 			
 			<div class="form-field form-required width80">
@@ -54,7 +55,7 @@
 					<p>Last Modified :  <?php _e(date_i18n( $datef, strtotime( $email->modified ) )) ?></p>
 					<div id="delete-action">
 							<a href="admin.php?page=<?php echo $_GET['page']; ?>&amp;action=delete&amp;id=<?php echo $id; ?>" class="trash">Delete <?php _e('Email');?></a></div>
-					<p><input name="publish" id="publish" class="preview button button-primary button-large" value="Save Email" type="submit" /></p>
+					<p><input name="publish" id="publish" class="preview button button-primary button-large" value="Save <?php _e($this->title);?>" type="submit" /></p>
 					<br class="clear" />
 				</div>
 			</div><!-- /submitdiv -->		
@@ -63,12 +64,14 @@
 			<div id="side-sortables" class="accordion-container">
 			<div id="submitdiv" class="stuffbox submit-box width25 float postbox" >
 				<div class="handlediv" title="Click to toggle"><br/></div>
-				<h3><?php _e('Assign Form') ?></h3>
+				<h3><?php _e('Assign Theme') ?></h3>
 				<div class="submit-box-content inside">
-					<?php 
-					$sel = $email->properties['form-page'];
-					
-					include 'assign-form.php';?>
+					Template : 
+					<select name="template">
+						<option value="default" <?php if($email->properties['template'] == 'default') echo 'selected="selected"'; ?>>Default</option>
+						<option value="orange" <?php if($email->properties['template'] == 'orange') echo 'selected="selected"'; ?>>2014 - orange</option>
+						<option value="plain" <?php if($email->properties['template'] == 'plain') echo 'selected="selected"'; ?>>2014 - plain</option>
+					</select>
 				</div>
 			</div>
 			</div>
@@ -90,7 +93,7 @@
 				<div class="submit-box-content inside">
 					<p>You can enter upto 10 mail by adding next line</p>
 					<textarea name="testMail" id="testMail" tabindex="2" class="width95" rows=5></textarea>
-					<p><input name="test_mail" id="test_mail" class="preview button button-primary button-large" value="Test Email" type="submit" /></p>
+					<p><input name="test_mail" id="test_mail" class="preview button button-primary button-large" value="Test <?php _e($this->title);?>" type="submit" /></p>
 				</div><br class="clear" />
 			</div>
 			</div>

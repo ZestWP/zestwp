@@ -16,6 +16,7 @@ class Email_Model extends dbZest
 			$data['content'] = $post['content'];
 			$data['campaign'] = $post['campaign'];
 			$data['signature'] = $post['signature'];
+			$data['template'] = $post['template'];
 			$data['form-page'] = $post['form-page'];
 			
 			if(isset($post['id']) && $post['id']>0){
@@ -67,6 +68,7 @@ class Email_Model extends dbZest
 			$data['content'] = $post['content'];
 			$data['campaign'] = $post['campaign'];
 			$data['form-page'] = $post['form-page'];
+			$data['template'] = $post['template'];
 			
 			return $this->insert(_TABLE_EMAIL_PREVIEW, $data);
 		}

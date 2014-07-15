@@ -5,7 +5,7 @@
 		<form action="admin.php?page=<?php echo $_GET['page']; ?>" id="form-campaign" method="post">
 		<input type="hidden" name="id" value="<?php echo $smtp->id; ?>" />
        
-		<div id="poststuff" class="metabox-holder">
+		<div class="leftPanel metabox-holder formDiv float">
 		   <div class="form-field form-required">
 				<label for="host"><?php _e('Enter SMTP Host');?></label>
 				<input type="text" name="host" size="30" tabindex="1" value="<?php echo $smtp->properties['host']; ?>" id="host" autocomplete="off" />
@@ -54,6 +54,35 @@
 				<input type="text" name="replyToAddress" size="30" tabindex="7" value="<?php echo $smtp->properties['replyToAddress']; ?>" id="replyToAddress" autocomplete="off" />
 			</div>
         </div>
-        <p><input name="save" id="save" class="button button-primary button-large" value="Save" type="submit" /></p>
+		
+		
+		<div class="float width30 rightPanel">
+			<div id="side-sortables" class="accordion-container">
+			<div id="submitdiv" class="stuffbox submit-box float postbox width100" >
+				<div class="handlediv" title="Click to toggle"><br/></div>
+				<h3><?php _e('DKIM settings') ?></h3>
+				<div class="inside">
+						
+						<label for="DKIM_domain"><?php _e('DKIM domain');?></label>
+						<input type="text" name="DKIM_domain" size="30" tabindex="7" value="<?php echo $smtp->properties['DKIM_domain']; ?>" id="DKIM_domain" autocomplete="off" /><br/>
+					
+						<label for="DKIM_private"><?php _e('DKIM private key');?></label>
+						<input type="text" name="DKIM_private" size="30" tabindex="7" value="<?php echo $smtp->properties['DKIM_private']; ?>" id="DKIM_private" autocomplete="off" /><br/>
+						
+						<label for="DKIM_selector"><?php _e('DKIM Selector');?></label>
+						<input type="text" name="DKIM_selector" size="30" tabindex="7" value="<?php echo $smtp->properties['DKIM_selector']; ?>" id="DKIM_selector" autocomplete="off" /><br/>
+					
+						<label for="DKIM_passphrase"><?php _e('DKIM pass phrase');?></label>
+						<input type="text" name="DKIM_passphrase" size="30" tabindex="7" value="<?php echo $smtp->properties['DKIM_passphrase']; ?>" id="DKIM_passphrase" autocomplete="off" /><br/>
+				
+					<p><input name="save" id="save" class="button button-primary button-large" value="Save" type="submit" /></p>
+					<br class="clear" />
+				</div>
+			</div><!-- /submitdiv -->		
+			</div>
+		</div>
+		
+		
+        
 		</form>
 </div>

@@ -9,6 +9,7 @@ class Email
 	private $model;
 	private $msg = '';
 	private $error = '';
+	private $title = _MENU_EMAIL_TITLE;
 	
 	public function __construct() 
 	{
@@ -147,8 +148,10 @@ class Email
 				$static = $mailer->getStatic();
 				$logo = $static->properties['img'];
 				unset($static);
-		
-				require(__ZEST_PATH.'/views/email_preview.php');
+				
+				$template = $email->properties['template'] ? $email->properties['template'] : 'default';
+				
+				require(__ZEST_PATH."/theme/email/{$template}.php");
 				exit;
 			}
 			

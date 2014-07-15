@@ -9,6 +9,7 @@ class Campaign
 	private $model;
 	private $msg = '';
 	private $error = '';
+	private $title = _MENU_CAMPAIGN_TITLE;
 	
 	public function __construct() 
 	{
@@ -16,7 +17,6 @@ class Campaign
 		$this->model = new Campaign_Model();
     }
 	public function  dashboard(){
-		
 		$campaigns = $this->model->getCampaigns();
 		
 		require(__ZEST_PATH.'/views/campaign-dashboard.php');

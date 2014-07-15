@@ -1,8 +1,8 @@
 <div class="wrap">
     <h2>
 		<?php _e( _PLUGIN_NAME .' :: '._MENU_USERS_TITLE); ?> 
-		<a href="admin.php?page=<?php _e(_PLUGIN_NAME);?>-users&id=0" class="add-new-h2"><?php _e('New User');?></a>
-		<a href="admin.php?page=<?php _e(_PLUGIN_NAME);?>-users&import=1" class="add-new-h2"><?php _e('Import Users');?></a>
+		<a href="admin.php?page=<?php _e(_PLUGIN_NAME);?>-users&id=0" class="zest-button"><?php _e('New User');?></a>
+		<a href="admin.php?page=<?php _e(_PLUGIN_NAME);?>-users&import=1" class="zest-button"><?php _e('Import Users');?></a>
 	</h2>
 	<?php printMsg($msg); errorMsg($error); ?>
 	<br class="clear"/>

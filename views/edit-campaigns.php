@@ -1,5 +1,5 @@
 <div class="wrap">
-    <h2><?php _e(_PLUGIN_NAME .' :: '._MENU_CAMPAIGN_TITLE); ?></h2>
+    <h2><?php _e(_PLUGIN_NAME .' :: '.$this->title); ?></h2>
     <br class="clear" />
 		<form action="admin.php?page=<?php echo $_GET['page']; ?>" id="form-campaign" method="post">
 		<input type="hidden" name="id" value="<?php echo $id; ?>" />
@@ -25,7 +25,7 @@
 			</div>
         
         
-        <p><input name="publish" id="publish" class="button button-primary button-large" value="Save Campaign" type="submit" /></p>
+        <p><input name="publish" id="publish" class="button button-primary button-large" value="Save <?php _e($this->title); ?>" type="submit" /></p>
 		</div>
 		
 		<?php if($id>0) { ?>

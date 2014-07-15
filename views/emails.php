@@ -1,7 +1,7 @@
 <div class="wrap">
     <h2>
-		<?php _e( _PLUGIN_NAME .' :: '._MENU_EMAIL_TITLE); ?> 
-		<a href="admin.php?page=<?php _e(_PLUGIN_NAME);?>-email&id=0" class="add-new-h2"><?php _e('New '._MENU_EMAIL_TITLE);?></a>
+		<?php _e( _PLUGIN_NAME .' :: '.$this->title); ?> 
+		<a href="admin.php?page=<?php _e(_PLUGIN_NAME);?>-email&id=0" class="zest-button"><?php _e('New '.$this->title);?></a>
 	</h2>
 	<?php printMsg($msg); errorMsg($error); ?>
 	<br class="clear"/>
@@ -43,8 +43,8 @@
 			<td><input class="case" value="<?php echo $item->id; ?>" name="delete_list[]" type="checkbox"></td>
 			<td><a href="admin.php?page=<?php echo $_GET['page']; ?>&amp;id=<?php echo $item->id; ?>"><?php echo $getList['title']; ?></a>
 			<div class="row-actions">
-				<span class="edit"><a href="admin.php?page=<?php echo $_GET['page']; ?>&amp;id=<?php echo $item->id; ?>">Edit <?php _e('Email');?></a> | </span>
-				<span class="trash"><a href="admin.php?page=<?php echo $_GET['page']; ?>&amp;action=delete&amp;id=<?php echo $item->id; ?>" class="trash">Delete <?php _e('Email');?></a></span>
+				<span class="edit"><a href="admin.php?page=<?php echo $_GET['page']; ?>&amp;id=<?php echo $item->id; ?>">Edit <?php _e($this->title);?></a> | </span>
+				<span class="trash"><a href="admin.php?page=<?php echo $_GET['page']; ?>&amp;action=delete&amp;id=<?php echo $item->id; ?>" class="trash">Delete <?php _e($this->title);?></a></span>
 			</div>
 		</td>
 		<td>

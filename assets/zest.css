@@ -101,6 +101,9 @@ label{font-weight:bold;}
 .widefat th{font-weight:bold;}
 
 .margin10{margin:10px}
+.r-btn{margin:0 10px 10px 0 !important;}
+.t-btn{margin:10px 10px 0px 0 !important;}
+.t-margin{margin:10px 10px 0px 0 !important;}
 .margin10imp{margin-left:10px !important}
 .stuffbox{margin:10px}
 
@@ -173,3 +176,46 @@ and (max-width : 680px) {
 .formAnalytics.colb{width:14%; float:left;}
 .formAnalytics.colc{width:14%;float:left;}
 .formAnalytics.cold{width:14%;float:left;}
+
+.editPer{color:#999;}
+.hilight a{font-weight:bold;font-size:15px;}
+
+/* Button*/
+.zest-button {
+	-moz-box-shadow:inset 0px 0px 0px 0px #FF8157;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #FF8157;
+	box-shadow:inset 0px 0px 0px 0px #FF8157;
+	background-color:#B04C2A;
+	-webkit-border-top-left-radius:4px;
+	-moz-border-radius-topleft:4px;
+	border-top-left-radius:4px;
+	-webkit-border-top-right-radius:4px;
+	-moz-border-radius-topright:4px;
+	border-top-right-radius:4px;
+	-webkit-border-bottom-right-radius:4px;
+	-moz-border-radius-bottomright:4px;
+	border-bottom-right-radius:4px;
+	-webkit-border-bottom-left-radius:4px;
+	-moz-border-radius-bottomleft:4px;
+	border-bottom-left-radius:4px;
+	text-indent:0px;
+	border:1px solid #d02718;
+	display:inline-block;
+	color:#ffffff;
+	font-size:16px;
+	font-weight:bold;
+	font-style:normal;
+	height:40px;
+	line-height:40px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 0px 0px #700b04;
+	padding:0 10px;
+	margin-left:25px;
+}
+.zest-button:hover {
+	color:#DDD;
+}
+/*  Button */
+
+.zest-remove{background:url('images/remove.png');}

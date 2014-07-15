@@ -16,21 +16,22 @@ class Egroup_Model extends dbZest
 			$data = array();
 			
 			$c = count($post['email']);
-			for( $i = 0; $i < $c; $i++ ){
-				if($post['email'][$i] == '') continue;
-				$emails[$post['email'][$i]]['email'] = $i; 
-				$emails[$post['email'][$i]]['fname'] = ($post['fname'][$i] ? $post['fname'][$i] : '') ; 
-				$emails[$post['email'][$i]]['lname'] = ($post['lname'][$i] ? $post['lname'][$i] : '') ; 
-			    $k = $i+1;
+			foreach($post['email'] as $e=>$k ){
+				
+				$e= $post['email'][$e];
+				$emails[$e]['email'] = $e; 
+				$emails[$e]['fname'] = ($post['fname'][$e] ? $post['fname'][$e] : '') ; 
+				$emails[$e]['lname'] = ($post['lname'][$e] ? $post['lname'][$e] : '') ; 
+			    $k = $e;
 				if(isset($post['cfield'][$k]) && sizeof($post['cfield'][$k])>0 && isset($post['cvalue'][$k]) && sizeof($post['cvalue'][$k])>0){
 					$arr = array_combine($post['cfield'][$k],$post['cvalue'][$k]);
-					$emails[$post['email'][$i]]['custom'] = $arr;
+					$emails[$e]['custom'] = $arr;
 				}
 			}
 
 			$data['name'] = $post['name'];
 			$data['email'] = $emails;
-			
+
 			if (is_uploaded_file($_FILES['file']['tmp_name'])) {
 				$handle = fopen($_FILES['file']['tmp_name'], "r");
 				$emails = array();

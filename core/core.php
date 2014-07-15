@@ -76,7 +76,7 @@ class Core
                 add_menu_page(_MENU_ZESTMAIL, _MENU_ZESTMAIL, 'manage_options', $bEmail);
             
 			add_submenu_page($bEmail, _MENU_EMAIL_OVERVIEW, _MENU_EMAIL_OVERVIEW, 'manage_options', $bEmail, array( $this->email, 'dashboard' ) );
-			add_submenu_page($bEmail, _MENU_EMAIL, _MENU_EMAIL_TITLE, 'manage_options', $base."-email", array( $this->email, 'email' ) );
+			add_submenu_page($bEmail, _MENU_EMAIL, _MENU_EMAIL, 'manage_options', $base."-email", array( $this->email, 'email' ) );
 			add_submenu_page($bEmail, _MENU_EMAIL_GROUP, _MENU_EMAIL_GROUP_TITLE, 'manage_options', $base."-egroup", array( $this->egroup, 'group' ) );
 			add_submenu_page($bEmail, _MENU_ZESTMAIL, _MENU_ZESTMAIL_TITLE, 'manage_options', $base."-marketing", array( $this->mailer, 'email' ) );
 			add_submenu_page($bEmail, _MENU_SMTP, _MENU_SMTP, 'manage_options', $setup, array( $this->mailer, 'smtp' ) );

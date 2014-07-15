@@ -8,6 +8,7 @@ class Egroup
 	private $model;
 	private $msg = '';
 	private $error = '';
+	private $title = _MENU_EMAIL_GROUP_TITLE;
 	
 	public function __construct() 
 	{

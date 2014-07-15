@@ -1,5 +1,5 @@
 <div class="wrap">
-    <h2><?php _e(_PLUGIN_NAME .' :: '._MENU_TASK_TITLE); ?><a href="<?php echo zest_url().'ajax/add-task.php';?>" rel="lightbox" setDimension="600X600" class="add-new-h2"><?php _e('New Task');?></a></h2>
+    <h2><?php _e(_PLUGIN_NAME .' :: '._MENU_TASK_TITLE); ?><a href="<?php echo zest_url().'ajax/add-task.php';?>" rel="lightbox" setDimension="600X600" class="zest-button"><?php _e('New Task');?></a></h2>
 	<table class="calendar" cellspacing="0" cellpadding="0">
 	<thead><tr>
 	<th><a href="admin.php?page=<?php _e(_PLUGIN_NAME);?>-tasks&m=<?php echo date('m', $prev_month);?>&y=<?php echo date('Y', $prev_month);?>">Prev</a></th>

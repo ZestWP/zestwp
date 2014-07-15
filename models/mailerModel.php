@@ -27,8 +27,8 @@ class Mailer_Model extends dbZest
 			
 		$type = $post['sendmail'];
 		
+		require_once(__ZEST_PATH."/core/class.phpmailer.php");
 		if($type == 'smtp'){
-			require_once(__ZEST_PATH."/core/class.phpmailer.php");
 			require_once(__ZEST_PATH."/core/class.smtp.php");
 		}
 		
@@ -51,7 +51,7 @@ class Mailer_Model extends dbZest
 			$mailer = array('a' =>$campaign->id, 'b' =>$email->id, 'c'=>$k);
 			$body = $this->contentClean($content, $list[$k], $signature, $mailer);
 			
-			$return = ($type == 'smtp') ? $this->emailSend($subject, $body, $k, $v) : $this->emailSendMail($subject, $body, $k, $v);
+			$return = $this->emailSend($subject, $body, $k, $v, $type);
 			$data[$k][] = array('mailId'=> $k, 'mailInfo' => $return);
 			if($return == 1) { $logs['success'][$k] = 1; $data['count']++;}
 			else { $logs['error'][$k]=$return; $data['fail']++;}
@@ -82,11 +82,12 @@ class Mailer_Model extends dbZest
 			$track = $link = $this->encrypt($enc);
 			$id = $mailer['b'];
 			$email = $this->getById($id);
-			if($email->properties[_TABLE_PAGE_FORM]) $form = $this->getById($email->properties[_TABLE_PAGE_FORM]);
-			else $form = $mailer->getByName(_TABLE_FORM_DEFAULT);
+			//if($email->properties[_TABLE_PAGE_FORM]) $form = $this->getById($email->properties[_TABLE_PAGE_FORM]);
+			//else $form = $mailer->getByName(_TABLE_FORM_DEFAULT);
 			$campaign = $email->properties[_TABLE_CAMPAIGN];
 			$source = "type=email&id=".$id;
 		}
+		
 		
 		$content = preg_replace( '/{[^}]+}/', '', $content);
 		
@@ -94,8 +95,10 @@ class Mailer_Model extends dbZest
 		$logo = $static->properties['img'];
 		unset($static);
 		
+		$template = $email->properties['template'] ? $email->properties['template'] : 'default';
+		
 		ob_start();        
-		include(__ZEST_PATH."/views/email_template.php");
+		include(__ZEST_PATH."/theme/email/{$template}.php");
 		$body = ob_get_contents();
         ob_end_clean();
 		
@@ -103,7 +106,7 @@ class Mailer_Model extends dbZest
 	
 	}
 	
-	public function emailSend($subject='', $body='', $to, $toName = ''){
+	public function emailSend($subject='', $body='', $to, $toName = '', $type = 'mail'){
 		
 		$smtp = $this->getSmtp()->properties;
 		
@@ -115,19 +118,29 @@ class Mailer_Model extends dbZest
 		
 		ob_start();  
 		$mail = new PHPMailer(); 
-		$mail->IsSMTP(); 
-		$mail->SMTPDebug = 1; 
-		$mail->SMTPAuth = true; 
-		$mail->SMTPSecure =$smtp['secure']; 
-		$mail->Host = $smtp['host'];
-		$mail->Port = $smtp['port'];
+		
+		if($type == 'smtp'){
+			$mail->IsSMTP(); 
+			$mail->SMTPDebug = 1; 
+			$mail->SMTPAuth = true; 
+			$mail->SMTPSecure =$smtp['secure']; 
+			$mail->Host = $smtp['host'];
+			$mail->Port = $smtp['port'];
+			
+			$mail->Username =  $smtp['username'];
+			$mail->Password = $smtp['password'];
+		}
+		
 		$mail->IsHTML(true);
-		$mail->Username =  $smtp['username'];
-		$mail->Password = $smtp['password'];
 		$mail->SetFrom($fromAddress, $fromName);
 		if(!empty($replyToAddress)) $mail->AddReplyTo($replyToAddress, $replyToName); 
 		$mail->Subject = $subject;
 		
+		if(!empty($smtp['DKIM_domain'])) $mail->DKIM_domain = $smtp['DKIM_domain'];
+		if(!empty($smtp['DKIM_private'])) $mail->DKIM_private = $smtp['DKIM_private'];
+		if(!empty($smtp['DKIM_selector'])) $mail->DKIM_selector = $smtp['DKIM_selector'];
+		if(!empty($smtp['DKIM_passphrase'])) $mail->DKIM_passphrase = $smtp['DKIM_passphrase'];
+
 		
 		$mail->Body = $body;
 		$mail->AddAddress($to, $toName);
@@ -145,31 +158,6 @@ class Mailer_Model extends dbZest
 			print_r($e);exit;
 		}
 		
-	}
-	
-	protected function emailSendMail($subject='', $body='', $to, $toName = ''){
-		
-		$smtp = $this->getSmtp()->properties;
-		
-		$fromAddress = ($_POST['fromAddress'] != '' ) ? $_POST['fromAddress'] : $smtp['fromAddress'];
-		$fromName = ($_POST['fromName'] != '' ) ? $_POST['fromName'] : $smtp['fromName'];
-		
-		$headers[] = "From: {$fromName} <{$fromAddress}>";
-
-		$mail = wp_mail( $toName."<{$to}>", $subject, $body, $headers );
-		
-		if (!$mail) {
-			global $ts_mail_errors;
-			global $phpmailer;
-			if (!isset($ts_mail_errors)) $ts_mail_errors = array();
-			if (isset($phpmailer)) {
-				$error = $phpmailer->ErrorInfo;
-			}
-			
-			return $error;
-		}
-		
-		return 1;
 	}
 	
 	public function getSmtp(){

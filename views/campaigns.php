@@ -1,7 +1,7 @@
 <div class="wrap">
     <h2>
-		<?php _e( _PLUGIN_NAME .' :: '._MENU_CAMPAIGN_TITLE); ?> 
-		<a href="admin.php?page=<?php _e(_PLUGIN_NAME);?>-campaign&id=0" class="add-new-h2"><?php _e('New Campaign');?></a>
+		<?php _e( _PLUGIN_NAME .' :: '.$this->title); ?> 
+		<a href="admin.php?page=<?php _e(_PLUGIN_NAME);?>-campaign&id=0" class="zest-button"><?php _e('New '.$this->title);?></a>
 	</h2>
 	<?php printMsg($msg); errorMsg($error); ?>
 	<br class="clear"/>

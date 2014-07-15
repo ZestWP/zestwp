@@ -1,6 +1,6 @@
 <div class="wrap">
     <h2>
-		<?php _e(_MENU_EMAIL); ?> 
+		<?php _e($this->title); ?> 
 	</h2>
 	<?php if (!empty($emails)): ?>
 		
@@ -11,9 +11,9 @@
         <?php foreach ($emails as $item){ ?>
 		<?php $getList = unserialize($item->properties);?>
         <tr>
-			<td id="<?php echo $item->id;?>"><a  class="editItem" href="javascript:void(0);"><?php echo $getList['title']; ?></a>
+			<td id="<?php echo $item->id;?>"><a  class="editItem" href="javascript:void(0);"><?php echo $getList['title']; ?></a> 
 			<div class="row-actions">
-				<span class="edit"><a  class="editItem"  href="javascript:void(0);"><?php _e('View Performance');?></a> </span>
+				<span class="editPer"><?php _e('View Performance');?></span>
 			</div>
 		</td>
         </tr>
@@ -24,12 +24,16 @@
 	</div>
     <div class="float width30 margin10imp">
 	<table class="widefat float lists" cellspacing="0" id="view">
+	<thead>
+		<tr><th colspan=2>Overall performance</th></tr>
+	</thead>
+	
+	
 	<tbody>
-		<tr><td>Total Email sent : <?php echo $mails['total']; ?></td></tr>
-		<tr><td>Failed Emails : <?php echo $mails['fail']; ?></td></tr>
-		<tr><td>Received mails : <?php echo $rate['email']; ?></td></tr>
-		<tr><td>Opened in Browser : <?php echo $rate['browser']; ?></td></tr>
-		<tr><td></td></tr>
+		<tr><td>Emails sent </td><td>:<b> <?php echo $mails['total']; ?></b></td></tr>
+		<tr><td>Email Bounces </td><td>:<b> <?php echo $mails['fail']; ?></b></td></tr>
+		<tr><td>Email Open Rate </td><td>:<b> <?php echo $rate['email']; ?></b></td></tr>
+		<tr><td>Email Click Rate </td><td>:<b> <?php echo $rate['browser']; ?></b></td></tr>
 	</tbody>
     </table>
 	</div>
@@ -38,16 +42,26 @@
     <?php endif; ?>
 
 </div>
+<style>
+.row-actions{color:#BBB;}
+#view td{width:50%;}
+</style>
 <script type="text/javascript">
 jQuery(document).ready( function($) {
 	$('#all').delegate('.editItem', 'click', function(){
-		$('#view').empty().html('<tr><td>Loading...</td></tr>').show();
+		
 		$id = $(this).parents('td').attr('id');
+		if($('#'+$id).attr('rel') =='clicked') return false;
+		$('#all td').removeAttr('rel').removeClass('hilight');
+		$('#'+$id).attr('rel','clicked').addClass('hilight');
+
+		
+		$('#view').empty().html('<tr><td>Loading...</td></tr>').show();
 		$.get('<?php echo  zest_url();?>ajax/email-performance.php?id=' + $id, function(data){
 			$('#view').html(data).show();;
 			
 		});
 	});
-	$('.editItem:first').click();
+	//$('.editItem:first').click();
 });
 </script>
